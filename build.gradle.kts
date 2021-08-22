@@ -5,8 +5,9 @@ plugins {
     `maven-publish`
 }
 
-group = "sugaryswing"
-version = "0.0.1"
+group = "com.github.huobingnan"
+
+version = "0.0.2"
 
 repositories {
     mavenCentral()
@@ -20,4 +21,15 @@ dependencies {
 
 tasks.withType<KotlinCompile>() {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            groupId = "com.github.huobingnan"
+            artifactId = "sugaryswing"
+            version = "0.0.2"
+            from(components["kotlin"])
+        }
+    }
 }
