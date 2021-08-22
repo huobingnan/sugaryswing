@@ -2,7 +2,6 @@
 
 package sugaryswing
 
-import java.awt.AWTEvent
 import java.awt.EventQueue
 import java.lang.IllegalArgumentException
 import java.util.*
@@ -21,6 +20,7 @@ private val emitterCache = ConcurrentHashMap<String, PipelineEmitter>()
 private val observerCache = ConcurrentHashMap<String, MutableList<PipelineObserver>>()
 private lateinit var poolObserverExecutor: ThreadPoolExecutor
 
+// 观察者的处理函数将会在什么线程中执行
 enum class Scope {
     EventDispatcher,
     New,
@@ -31,6 +31,7 @@ enum class Scope {
 // 通道观察者
 interface PipelineObserver {
 
+    // 返回观察者的线程作用域
     fun observeOn(): Scope
 
     // onData方法体中严禁调用订阅事件发射器的emit方法。
@@ -40,8 +41,10 @@ interface PipelineObserver {
 
 interface PipelineEmitter {
 
+    // 发射事件
     fun emit(data: Any?)
 
+    // 添加观察者
     fun addObserver(observer: PipelineObserver)
 }
 
