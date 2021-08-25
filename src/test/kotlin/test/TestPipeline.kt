@@ -69,8 +69,6 @@ object TestPipeline {
 
         subscribePipeline("textarea.log", logObserver)
 
-        subscribePipeline("textarea.log", logObserver)
-
         subscribePipeline("textarea.sync", requestObserver)
 
         add(splitPane, BorderLayout.CENTER)

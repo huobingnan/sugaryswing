@@ -7,7 +7,7 @@ plugins {
 
 group = "com.github.huobingnan"
 
-version = "0.0.2"
+version = "0.0.4"
 
 repositories {
     mavenCentral()
@@ -28,7 +28,7 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.huobingnan"
             artifactId = "sugaryswing"
-            version = "0.0.2"
+            version = "0.0.4"
             from(components["kotlin"])
         }
     }
